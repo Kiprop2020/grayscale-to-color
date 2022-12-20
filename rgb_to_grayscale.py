@@ -1,3 +1,4 @@
+import numpy
 import streamlit as st
 import tensorflow as tf
 from PIL import Image
@@ -17,7 +18,8 @@ def convert_image(upload):
   col1.write("Original Image :camera")
   col1.image(rgb_image)
 
-  gray_image = array_to_img(rgb_to_grayscale(rgb_image))
+  image_array = numpy.array(rgb_image)
+  gray_image = array_to_img(rgb_to_grayscale(image_array))
   col2.write("Converted Image :wrench:")
   col2.image(gray_image)
   
