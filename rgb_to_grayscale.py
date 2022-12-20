@@ -1,7 +1,7 @@
 import tensorflow as tf
 from PIL import Image
 
-input_source = "C:/Users/negehiza/OneDrive - NACC/Pictures/example.jpg"
+input_source = "C:/Users/negehiza/OneDrive - NACC/Pictures/House design.png"
 output_source = "C:/Users/negehiza/OneDrive - NACC/Pictures/example.jpg"
 
 image = Image.open(input_source)
