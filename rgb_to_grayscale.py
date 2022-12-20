@@ -15,8 +15,8 @@ def convert_image(upload):
   col1.image(image)
   
   converted = tf.image.rgb_to_grayscale(image)
-  converted = tf.keras.utils.img_to_array(image)
-  converted = tf.keras.utils.array_to_img(image)
+  converted = tf.keras.utils.img_to_array(converted)
+  converted = tf.keras.utils.array_to_img(converted)
   col2.write("Fixed Image :wrench:")
   col2.image(converted)
   st.sidebar.markdown("\n")
