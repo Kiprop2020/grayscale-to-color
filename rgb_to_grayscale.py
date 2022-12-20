@@ -3,6 +3,8 @@ import tensorflow as tf
 from PIL import Image
 from io import BytesIO
 import numpy 
+from tensorflow.image import rgb_to_grayscale
+from tensorflow.keras.utils import array_to_img, img_to_array
 
 def convert_image(image):
   buf = BytesIO()
@@ -14,14 +16,10 @@ def convert_image(upload):
   image = Image.open(upload)
   col1.write("Original Image :camera")
   col1.image(image)
-  
-  with open(upload, "rb") as f:
-    image_bytes = f.read()
-  rgb_image = tf.image.decode_image(image_bytes)
-  
-  converted = tf.image.rgb_to_grayscale(rgb_image)
-  converted = tf.keras.utils.img_to_array(converted)
-  converted = tf.keras.utils.array_to_img(converted)
+
+  converted = rgb_to_grayscale(image)
+#   converted = tf.keras.utils.img_to_array(converted)
+  converted = array_to_img(converted)
   col2.write("Fixed Image :wrench:")
   col2.image(converted)
   st.sidebar.markdown("\n")
