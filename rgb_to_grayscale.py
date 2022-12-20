@@ -13,7 +13,7 @@ def convert_image(image):
   return byte_im
 
 def convert_image(upload):
-  with open('path/to/image.png', 'rb') as f:
+  with open(upload, 'rb') as f:
     image_bytes = f.read()
     image = tf.io.decode_png(image_bytes)
     
