@@ -2,6 +2,7 @@ import streamlit as st
 import tensorflow as tf
 from PIL import Image
 from io import BytesIO
+import numpy 
 
 def convert_image(image):
   buf = BytesIO()
@@ -14,7 +15,7 @@ def convert_image(upload):
   col1.write("Original Image :camera")
   col1.image(image)
   
-  converted = tf.image.rgb_to_grayscale(image)
+  converted = numpy(image)
   converted = tf.keras.utils.img_to_array(converted)
   converted = tf.keras.utils.array_to_img(converted)
   col2.write("Fixed Image :wrench:")
