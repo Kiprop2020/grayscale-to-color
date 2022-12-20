@@ -13,7 +13,10 @@ def convert_image(image):
   return byte_im
 
 def convert_image(upload):
-  image = Image.open(upload)
+  with open('path/to/image.png', 'rb') as f:
+    image_bytes = f.read()
+    image = tf.io.decode_png(image_bytes)
+    
   col1.write("Original Image :camera")
   col1.image(image)
 
