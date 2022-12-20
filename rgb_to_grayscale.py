@@ -5,7 +5,7 @@ from io import BytesIO
 
 def convert_image(image):
   buf = BytesIO()
-  image.save(buf, format='jpg')
+  image.save(buf, format='png')
   byte_im = buf.getvalue()
   return byte_im
 
