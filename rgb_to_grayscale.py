@@ -15,7 +15,11 @@ def convert_image(upload):
   col1.write("Original Image :camera")
   col1.image(image)
   
-  converted = numpy(image)
+  with open(upload, "rb") as f:
+    image_bytes = f.read()
+  rgb_image = tf.image.decode_image(image_bytes)
+  
+  converted = tf.image.rgb_to_grayscale(rgb_image)
   converted = tf.keras.utils.img_to_array(converted)
   converted = tf.keras.utils.array_to_img(converted)
   col2.write("Fixed Image :wrench:")
