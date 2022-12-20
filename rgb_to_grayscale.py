@@ -1,12 +1,33 @@
+import streamlit as st
 import tensorflow as tf
 from PIL import Image
+from io import BytesIO
 
-input_source = "C:/Users/negehiza/OneDrive - NACC/Pictures/House design.png"
-output_source = "C:/Users/negehiza/OneDrive - NACC/Pictures/example.jpg"
+def convert_image(image):
+  buf = BytesIO()
+  image.save(buf, format='PNG')
+  byte_im = buf.getvalue()
+  return byte_im
 
-image = Image.open(input_source)
-image = tf.image.rgb_to_grayscale(image)
-image = tf.keras.utils.img_to_array(image)
-image = tf.keras.utils.array_to_img(image)
-image.save(output_source, format=None)
-Image.open(output_source)
+def convert_image(upload):
+  image = Image.open(upload)
+  col1.write("Original Image :camera")
+  col1.image(image)
+  
+  converted = tf.image.rgb_to_grayscale(image)
+  converted = tf.keras.utils.img_to_array(image)
+  converted = tf.keras.utils.array_to_img(image)
+  col2.write("Fixed Image :wrench:")
+  col2.image(converted)
+  st.sidebar.markdown("\n")
+  st.sidebar.download_button("Download converted image", convert_image(converted), "converted.png", "image/png")
+  
+  
+col1, col2 = st.columns(2)
+my_upload = st.sidebar.file_uploader("Upload an image", type=["png", "jpg", "jpeg"])
+
+if my_upload is not None:
+  convert_image(upload=my_upload)
+  
+else:
+  convert_image("./House design.png")
